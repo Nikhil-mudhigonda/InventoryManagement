@@ -25,8 +25,6 @@ namespace InventoryManagement.Forms
             using(SqlConnection conn = DbHelper.GetConnection())
             {
                 string query = "select ProductName, Quantity from products";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.CommandTimeout = 120;
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);

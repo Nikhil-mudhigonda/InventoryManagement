@@ -64,7 +64,19 @@ namespace InventoryManagement.Forms
                     cmd.CommandTimeout = 60;
                     cmd.ExecuteNonQuery();
 
-                    string UpdateProducts = "update products set Quantity = Quantity + @Quantity where productid = @ProductId";
+                    string checkQuantityQuery = "select Quantity from products where ProductId = @ProductId";
+                    SqlCommand checkCmd = new SqlCommand(checkQuantityQuery, con, transaction);
+                    checkCmd.Parameters.AddWithValue("@ProductId", productId);
+                    checkCmd.CommandTimeout = 60;
+                    int currentQuantity = (int)checkCmd.ExecuteScalar();
+                    if (currentQuantity < quantity)
+                    {
+                        transaction.Rollback();
+                        stockOutInfolbl.Text = "Not enough stock available";
+                        return;
+                    }
+
+                    string UpdateProducts = "update products set Quantity = Quantity - @Quantity where productid = @ProductId";
                     SqlCommand cmdupdate = new SqlCommand(UpdateProducts, con, transaction);
                     cmdupdate.Parameters.AddWithValue("@Quantity", quantity);
                     cmdupdate.Parameters.AddWithValue("ProductId", productId);
