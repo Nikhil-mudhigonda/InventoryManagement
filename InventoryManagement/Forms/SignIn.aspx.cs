@@ -29,11 +29,11 @@ namespace InventoryManagement.Forms
             {
                 string query = "insert into users (username, password, role) values (@username, @password, @role)";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@username", SgnUsername.Text);
-                cmd.Parameters.AddWithValue("@password", Utilities.PasswordHelper.HashPassword(SgnPassword.Text));
+                cmd.Parameters.AddWithValue("@username", SgnUsernameTxt.Text);
+                cmd.Parameters.AddWithValue("@password", Utilities.PasswordHelper.HashPassword(SgnPasswordTxt.Text));
                 cmd.Parameters.AddWithValue("@role", RoleButtonList1.SelectedValue);
-                conn.Open();
                 cmd.CommandTimeout = 120;
+                conn.Open();
                 cmd.ExecuteNonQuery();
                 InfoTxt.Text = "Signin was succefull, please login";
             }
@@ -41,7 +41,7 @@ namespace InventoryManagement.Forms
 
         protected void sgnloginBtn_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("Forms/Login.aspx");
+            Response.Redirect("Login.aspx");
         }
     }
 }

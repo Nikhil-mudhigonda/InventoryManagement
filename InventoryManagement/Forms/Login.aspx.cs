@@ -28,7 +28,9 @@ namespace InventoryManagement.Forms
                 string query = "select username, password from users where username = @username and password = @password";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@username", LgnUsernameTxt.Text);
+                string lgnname = LgnUsernameTxt.Text;
                 cmd.Parameters.AddWithValue("@password", Utilities.PasswordHelper.HashPassword(LgnPasswordTxt.Text));
+                string pass = Utilities.PasswordHelper.HashPassword(LgnPasswordTxt.Text);
                 conn.Open();
                 cmd.CommandTimeout = 60;
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -39,7 +41,7 @@ namespace InventoryManagement.Forms
                     //{
                     //    Response.Redirect("Forms/Dashboard.aspx");
                     //}
-                    Response.Redirect("Forms/Dashboard.aspx");
+                    Response.Redirect("Dashboard.aspx");
                 }
                 else
                 {

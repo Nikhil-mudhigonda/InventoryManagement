@@ -27,7 +27,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="StockOutBtn" runat="server" OnClick="StockOutBtn_Click" Text="StockOut" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="StockOutBackbtn" runat="server" Text="Back" />
+            <asp:Button ID="StockOutBackbtn" runat="server" OnClick="StockOutBackbtn_Click" Text="Back" />
             <br />
             <br />
             <asp:Label ID="stockOutInfolbl" runat="server"></asp:Label>

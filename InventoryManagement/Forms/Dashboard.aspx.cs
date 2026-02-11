@@ -24,7 +24,9 @@ namespace InventoryManagement.Forms
         {
             using(SqlConnection conn = DbHelper.GetConnection())
             {
-                string query = "select ProductId, ProductName, ProductType, Quantity from products";
+                string query = "select ProductName, Quantity from products";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.CommandTimeout = 120;
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -37,12 +39,12 @@ namespace InventoryManagement.Forms
 
         protected void StockInBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Forms/StockIn.aspx");
+            Response.Redirect("StockIn.aspx");
         }
 
         protected void StockOutBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Forms/StockOut.aspx");
+            Response.Redirect("StockOut.aspx");
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

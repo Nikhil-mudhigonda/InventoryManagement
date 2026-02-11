@@ -22,13 +22,16 @@ namespace InventoryManagement.Forms
         {
             using (SqlConnection conn = DbHelper.GetConnection())
             {
-                string query = "select ProductId, ProductType from products";
+                string query = "select ProductId, ProductName from products";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.CommandTimeout = 120;
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
                 ProductsDropDownList.DataSource = dt;
-                ProductsDropDownList.DataTextField = "ProductType";
+                ProductsDropDownList.DataTextField = "ProductName";
                 ProductsDropDownList.DataValueField = "ProductId";
                 ProductsDropDownList.DataBind();
 
@@ -74,15 +77,15 @@ namespace InventoryManagement.Forms
                 try
                 {
                     string query = "insert into StockIn (ProductId, SupplierId, Quantity) values (@productId, @SupplierId, @Qty)";
-                    SqlCommand cmd = new SqlCommand(query, con);
+                    SqlCommand cmd = new SqlCommand(query, con, transaction);
                     cmd.Parameters.AddWithValue("@productId", productId);
                     cmd.Parameters.AddWithValue("@SupplierId", supplierId);
                     cmd.Parameters.AddWithValue("@Qty", quantity);
                     cmd.CommandTimeout = 60;
                     cmd.ExecuteNonQuery();
 
-                    string UpdateProducts = "update products set Quntity = Quantity + @Quantity where productid = @ProductId";
-                    SqlCommand cmdupdate = new SqlCommand(UpdateProducts, con);
+                    string UpdateProducts = "update products set Quantity = Quantity + @Quantity where productid = @ProductId";
+                    SqlCommand cmdupdate = new SqlCommand(UpdateProducts, con, transaction);
                     cmdupdate.Parameters.AddWithValue("@Quantity", quantity);
                     cmdupdate.Parameters.AddWithValue("ProductId", productId);
                     cmdupdate.CommandTimeout = 60;
@@ -102,7 +105,7 @@ namespace InventoryManagement.Forms
 
         protected void StockInBackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Forms/Dashboard.aspx");
+            Response.Redirect("Dashboard.aspx");
         }
     }
 }

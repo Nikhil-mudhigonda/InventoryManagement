@@ -33,13 +33,13 @@ namespace InventoryManagement.Forms
         protected global::System.Web.UI.WebControls.Label SgnUsername;
 
         /// <summary>
-        /// TextBox1 control.
+        /// SgnUsernameTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox SgnUsernameTxt;
 
         /// <summary>
         /// SgnPassword control.
@@ -51,13 +51,13 @@ namespace InventoryManagement.Forms
         protected global::System.Web.UI.WebControls.Label SgnPassword;
 
         /// <summary>
-        /// TextBox2 control.
+        /// SgnPasswordTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox SgnPasswordTxt;
 
         /// <summary>
         /// Rolelbl control.
